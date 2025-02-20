@@ -3,6 +3,7 @@ using OpenTK.Windowing.Desktop;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Mathematics;
 using OpenTK.Windowing.GraphicsLibraryFramework;
+using System.Threading;
 
 namespace Chip_8_Emulator.Graphics
 {
@@ -13,6 +14,9 @@ namespace Chip_8_Emulator.Graphics
         public static int Height;
 
         public byte[] Display = new byte[64 * 32];
+        public byte DelayTimer = 255;
+        public byte SoundTimer = 0;
+
         private Emulator emulator;
         private ShaderProgram shaderProgram;
 
@@ -34,10 +38,30 @@ namespace Chip_8_Emulator.Graphics
             shaderProgram = new ShaderProgram(vertexShaderPath, fragmentShaderPath);
             shaderProgram.Use();
 
-            GL.ClearColor(0.1f, 0.5f, 0.1f, 1);
+            StartTimers();
+
+            GL.ClearColor(0.1f, 0.1f, 0.1f, 1);
 
             GL.Enable(EnableCap.Blend);
             GL.BlendFunc(BlendingFactor.SrcAlpha, BlendingFactor.OneMinusSrcAlpha);
+        }
+
+        private void StartTimers()
+        {
+            new Thread(() =>
+            {
+                while (true)
+                {
+                    if (DelayTimer > 0) DelayTimer--;
+                    if (SoundTimer > 0)
+                    {
+                        SoundTimer--;
+                        PlaySound();
+                    }
+                    Thread.Sleep(16); // Aproximadamente 60 veces por segundo
+                }
+            })
+            { IsBackground = true }.Start();
         }
 
         protected override void OnRenderFrame(FrameEventArgs args)
@@ -46,18 +70,25 @@ namespace Chip_8_Emulator.Graphics
 
             GL.Clear(ClearBufferMask.ColorBufferBit);
 
-            //Render();
-            Pixel pixel = new Pixel(0, 0, true);
-            pixel.Render();
+            ManageInput();
+
+            Thread.Sleep(1000 / 750);
+
+            Render();
 
             SwapBuffers();
+        }
+
+        private void PlaySound()
+        {
+            Console.Beep(440, 100);
         }
 
         public void Clear()
         {
             for (int i = 0; i < Display.Length; i++)
             {
-                Display[i] = 1;
+                Display[i] = 0;
             }
             GL.Clear(ClearBufferMask.ColorBufferBit);
             Render();
@@ -65,25 +96,45 @@ namespace Chip_8_Emulator.Graphics
 
         public void Render()
         {
+            Pixel p;
             for (int i = 0; i < 64; i++)
             {
                 for (int j = 0; j < 32; j++)
                 {
-                    Pixel p = new Pixel(i, j, Display[i + j * 64] == 1);
+                    if (Display[i + j * 64] == 0)
+                        continue;
+                    p = new Pixel(i, j, Display[i + j * 64] != 0);
                     p.Render();
                 }
             }
         }
 
-        public void OnKeyDown(byte key)
+        private void ManageInput()
         {
-            emulator.Keys[key] = true;
-            Console.WriteLine("Key down " + key);
-        }
+            if (KeyboardState.IsKeyDown(Keys.Escape))
+            {
+                Close();
+            }
 
-        public void OnKeyUp(byte key)
-        {
-            emulator.Keys[key] = false;
+            Keys[] keys = new Keys[16]
+            {
+                Keys.D1, Keys.D2, Keys.D3, Keys.D4,
+                Keys.Q, Keys.W, Keys.E, Keys.R,
+                Keys.A, Keys.S, Keys.D, Keys.F,
+                Keys.Z, Keys.X, Keys.C, Keys.V
+            };
+
+            for (int i = 0; i < 16; i++)
+            {
+                if (KeyboardState.IsKeyDown(keys[i]))
+                {
+                    emulator.Keys[i] = true;
+                }
+                else
+                {
+                    emulator.Keys[i] = false;
+                }
+            }
         }
     }
 }

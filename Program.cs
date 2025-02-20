@@ -3,5 +3,5 @@ using Chip_8_Emulator;
 using Chip_8_Emulator.Graphics;
 using OpenTK.Windowing.Desktop;
 
-Emulator emulator = new Emulator(15);
+Emulator emulator = new Emulator(20);
 emulator.Run();

@@ -25,7 +25,8 @@ namespace Chip_8_Emulator.Graphics
             this.color = color;
             int c = color ? 1 : 0;
 
-            float size = Window.CELL_SIZE/2;
+            float sizeX = (Window.CELL_SIZE / (float)Window.Width) * 2f;
+            float sizeY = (Window.CELL_SIZE / (float)Window.Height) * 2f;
 
             float normalizedX = (XScreen / (float)Window.Width) * 2f - 1f;
             float normalizedY = (YScreen / (float)Window.Height) * -2f + 1f;
@@ -34,28 +35,24 @@ namespace Chip_8_Emulator.Graphics
             {
                 new Triangle(new float[]
                 {
-                    normalizedX - size, normalizedY - size, 0,   c, c, c,    0, 0,
-                    normalizedX + size, normalizedY - size, 0,   c, c, c,    0, 0,
-                    normalizedX - size, normalizedY + size, 0,   c, c, c,    0, 0
+                    normalizedX, normalizedY, 0,   c, c, c,    0, 0,
+                    normalizedX + sizeX, normalizedY, 0,   c, c, c,    0, 0,
+                    normalizedX, normalizedY - sizeY, 0,   c, c, c,    0, 0
                 }),
                 new Triangle(new float[]
                 {
-                    normalizedX + size, normalizedY + size, 0,   c, c, c,    0, 0,
-                    normalizedX + size, normalizedY - size, 0,   c, c, c,    0, 0,
-                    normalizedX - size, normalizedY + size, 0,   c, c, c,    0, 0
+                    normalizedX + sizeX, normalizedY - sizeY, 0,   c, c, c,    0, 0,
+                    normalizedX + sizeX, normalizedY, 0,   c, c, c,    0, 0,
+                    normalizedX, normalizedY - sizeY, 0,   c, c, c,    0, 0
                 })
             };
-
-            Console.WriteLine($"Triángulo 1: ({XScreen - size}, {YScreen - size}), ({XScreen + size}, {YScreen - size}), ({XScreen - size}, {YScreen + size})");
-            Console.WriteLine($"Triángulo 2: ({XScreen + size}, {YScreen + size}), ({XScreen + size}, {YScreen - size}), ({XScreen - size}, {YScreen + size})");
-
         }
+
 
         public void Render()
         {
-            Console.WriteLine($"Pixel lógico: ({X}, {Y}) -> Pixel en pantalla: ({XScreen}, {YScreen})");
             render[0].Render();
-            //render[1].Render();
+            render[1].Render();
         }
     }
 }

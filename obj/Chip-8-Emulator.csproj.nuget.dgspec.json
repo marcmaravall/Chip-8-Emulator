@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\marcm\\source\\repos\\Chip-8-Emulator\\Chip-8-Emulator.csproj": {}
+    "C:\\Users\\Marc\\Source\\Repos\\marcmaravall\\Chip-8-Emulator\\Chip-8-Emulator.csproj": {}
   },
   "projects": {
-    "C:\\Users\\marcm\\source\\repos\\Chip-8-Emulator\\Chip-8-Emulator.csproj": {
+    "C:\\Users\\Marc\\Source\\Repos\\marcmaravall\\Chip-8-Emulator\\Chip-8-Emulator.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\marcm\\source\\repos\\Chip-8-Emulator\\Chip-8-Emulator.csproj",
+        "projectUniqueName": "C:\\Users\\Marc\\Source\\Repos\\marcmaravall\\Chip-8-Emulator\\Chip-8-Emulator.csproj",
         "projectName": "Chip-8-Emulator",
-        "projectPath": "C:\\Users\\marcm\\source\\repos\\Chip-8-Emulator\\Chip-8-Emulator.csproj",
-        "packagesPath": "C:\\Users\\marcm\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\marcm\\source\\repos\\Chip-8-Emulator\\obj\\",
+        "projectPath": "C:\\Users\\Marc\\Source\\Repos\\marcmaravall\\Chip-8-Emulator\\Chip-8-Emulator.csproj",
+        "packagesPath": "C:\\Users\\Marc\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Marc\\Source\\Repos\\marcmaravall\\Chip-8-Emulator\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\marcm\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Marc\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -70,7 +66,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

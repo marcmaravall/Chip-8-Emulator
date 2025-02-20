@@ -13,6 +13,24 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="ROMS\BMP Viewer - Hello %28C8 example%29 [Hap, 2005].ch8">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="ROMS\Chip8 Picture.ch8">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="ROMS\Maze %28alt%29 [David Winter, 199x].ch8">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="ROMS\pong.rom">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="ROMS\pong2.rom">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="ROMS\Tank.ch8">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="ROMS\Tetris [Fran Dachille, 1991].ch8">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
