@@ -58,7 +58,7 @@ namespace Chip_8_Emulator.Graphics
                         SoundTimer--;
                         PlaySound();
                     }
-                    Thread.Sleep(16); // Aproximadamente 60 veces por segundo
+                    Thread.Sleep(16);
                 }
             })
             { IsBackground = true }.Start();
@@ -71,8 +71,6 @@ namespace Chip_8_Emulator.Graphics
             GL.Clear(ClearBufferMask.ColorBufferBit);
 
             ManageInput();
-
-            Thread.Sleep(1000 / 750);
 
             Render();
 
@@ -135,6 +133,12 @@ namespace Chip_8_Emulator.Graphics
                     emulator.Keys[i] = false;
                 }
             }
+        }
+
+        protected override void OnResize(ResizeEventArgs e)
+        {
+            base.OnResize(e);
+            GL.Viewport(0, 0, e.Width, e.Height);
         }
     }
 }

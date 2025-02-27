@@ -73,3 +73,10 @@ C:\Users\Marc\Source\Repos\marcmaravall\Chip-8-Emulator\bin\Debug\net8.0\ROMS\Ch
 C:\Users\Marc\Source\Repos\marcmaravall\Chip-8-Emulator\bin\Debug\net8.0\ROMS\Tank.ch8
 C:\Users\Marc\Source\Repos\marcmaravall\Chip-8-Emulator\bin\Debug\net8.0\ROMS\pong.rom
 C:\Users\Marc\Source\Repos\marcmaravall\Chip-8-Emulator\bin\Debug\net8.0\ROMS\pong2.rom
+C:\Users\marcm\source\repos\Chip-8-Emulator\bin\Debug\net8.0\ROMS\BMP Viewer - Hello (C8 example) [Hap, 2005].ch8
+C:\Users\marcm\source\repos\Chip-8-Emulator\bin\Debug\net8.0\ROMS\Chip8 Picture.ch8
+C:\Users\marcm\source\repos\Chip-8-Emulator\bin\Debug\net8.0\ROMS\Maze (alt) [David Winter, 199x].ch8
+C:\Users\marcm\source\repos\Chip-8-Emulator\bin\Debug\net8.0\ROMS\pong.rom
+C:\Users\marcm\source\repos\Chip-8-Emulator\bin\Debug\net8.0\ROMS\pong2.rom
+C:\Users\marcm\source\repos\Chip-8-Emulator\bin\Debug\net8.0\ROMS\Tank.ch8
+C:\Users\marcm\source\repos\Chip-8-Emulator\obj\Debug\net8.0\Chip-8-Emulator.sourcelink.json

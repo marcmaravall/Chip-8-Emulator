@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Chip_8_Emulator
-build_property.ProjectDir = C:\Users\Marc\Source\Repos\marcmaravall\Chip-8-Emulator\
+build_property.ProjectDir = C:\Users\marcm\source\repos\Chip-8-Emulator\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

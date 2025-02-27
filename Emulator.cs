@@ -1,6 +1,7 @@
 ﻿using OpenTK.Windowing.Desktop;
 using OpenTK.Windowing.Common;
 using Chip_8_Emulator.Graphics;
+using System.Diagnostics;
 
 namespace Chip_8_Emulator
 {
@@ -17,6 +18,7 @@ namespace Chip_8_Emulator
 
         private Window window;
         public int Size { get; private set; }
+        private int instructions;
         public Emulator(int size) 
         {
             Size = size;
@@ -28,12 +30,12 @@ namespace Chip_8_Emulator
             {
                 ClientSize = new OpenTK.Mathematics.Vector2i(64, 32) * Size,
                 Title = "Chip-8 Emulator",
-                MaximumClientSize = new OpenTK.Mathematics.Vector2i(64, 32) * Size,
-                MinimumClientSize = new OpenTK.Mathematics.Vector2i(64, 32) * Size,
+                //MaximumClientSize = new OpenTK.Mathematics.Vector2i(64, 32) * Size,
+                //MinimumClientSize = new OpenTK.Mathematics.Vector2i(64, 32) * Size,
             };
             window = new Window(GameWindowSettings.Default, nativeSettings, this);
 
-            LoadROM(@"ROMS\Tetris [Fran Dachille, 1991].ch8");
+            LoadROM(@"ROMS\BMP Viewer - Hello (C8 example) [Hap, 2005].ch8");
             StartExecution();
 
             window.Run();
@@ -51,11 +53,29 @@ namespace Chip_8_Emulator
             Array.Copy(romData, 0, Memory, 0x200, romData.Length);
         }
 
+        private int executedInstructions = 0;
+        private Stopwatch perfTimer = new Stopwatch();
+
         public void StartExecution()
         {
-            window.UpdateFrame += (FrameEventArgs e) => ExecuteInstruction();
-        }
+            perfTimer.Start();
+            window.UpdateFrame += (FrameEventArgs e) =>
+            {
+                int instructionsPerFrame = 10;
+                for (int i = 0; i < instructionsPerFrame; i++)
+                {
+                    ExecuteInstruction();
+                    executedInstructions++;
+                }
 
+                if (perfTimer.ElapsedMilliseconds >= 1000)
+                {
+                    Console.WriteLine($"Instructions per second: {executedInstructions}");
+                    executedInstructions = 0;
+                    perfTimer.Restart();
+                }
+            };
+        }
 
         private void ExecuteInstruction()
         {
@@ -216,7 +236,7 @@ namespace Chip_8_Emulator
                     }
                 }
 
-                //window.Render();
+                // window.Render();
 
                 PC += 2;
             }
@@ -350,6 +370,8 @@ namespace Chip_8_Emulator
                 Console.WriteLine("Unknown instruction: "+opcode);
                 PC += 2;
             }
+            // Console.WriteLine($"[{DateTime.Now}] [{instructions}] Instruction: {opcode}");
+            instructions++;
         }
     }
 }
